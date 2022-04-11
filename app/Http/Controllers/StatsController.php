@@ -19,9 +19,8 @@ class StatsController extends Controller
         if(!$article) {
             return ['result' => false];
         }
-        $article->views++;
-        $article->save();
-        return ['result' => true, 'views' => $article->views];
+        $views = $article->view();
+        return ['result' => true, 'views' => $views];
     }
 
     /**

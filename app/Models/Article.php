@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Redis;
 
 /**
  * App\Models\Article
@@ -45,7 +46,8 @@ class Article extends Model
      *
      * @return BelongsToMany
      */
-    public function tags() {
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
@@ -54,7 +56,8 @@ class Article extends Model
      *
      * @return bool|string
      */
-    public function getContentPreviewAttribute() {
+    public function getContentPreviewAttribute()
+    {
         return substr($this->content, 0, 100);
     }
 
@@ -63,7 +66,47 @@ class Article extends Model
      *
      * @return string
      */
-    public function getFullUrlAttribute() {
+    public function getFullUrlAttribute()
+    {
         return '/articles/' . $this->url;
+    }
+
+    /**
+     * Get redis key
+     *
+     * @return string
+     */
+    public function getRedisKeyAttribute()
+    {
+        return 'article:' . $this->id . ':view';
+    }
+
+    /**
+     * Get views from redis or from database if not cached
+     *
+     * @return int
+     */
+    public function getCachedViewsAttribute()
+    {
+        $cachedViews = Redis::get($this->redis_key);
+        return $cachedViews ?? $this->views;
+    }
+
+    /**
+     * Increment view in cache
+     *
+     * @return mixed
+     */
+    public function view()
+    {
+        $cachedViews = Redis::get($this->redis_key);
+
+        if (!isset($cachedViews)) {
+            Redis::set($this->redis_key, $this->views);
+        }
+
+        $views = Redis::incr($this->redis_key);
+
+        return $views;
     }
 }

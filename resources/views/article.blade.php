@@ -13,7 +13,7 @@
         <div class="container">
             <h1>{{$article->title}}</h1>
             <div class="icons d-flex">
-                <div class="icon views"><i class="bi bi-eye"><span class="count">{{$article->views}}</span></i></div>
+                <div class="icon views"><i class="bi bi-eye"><span class="count">{{$article->cached_views}}</span></i></div>
                 <div class="icon like"><i class="bi bi-heart"><span class="count">{{$article->likes}}</span></i></div>
             </div>
             <div class="row">

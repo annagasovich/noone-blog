@@ -7,7 +7,7 @@
         <p class="display-30">{{$article->content_preview}}</p>
     </div>
     <div class="card-footer d-flex justify-content-between icons">
-        <div class=""><i class="bi bi-eye">{{$article->views}}</i></div>
+        <div class=""><i class="bi bi-eye">{{$article->cached_views}}</i></div>
         <div class=""><i class="bi bi-heart">{{$article->likes}}</i></div>
     </div>
 </article>

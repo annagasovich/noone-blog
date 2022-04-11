@@ -16,10 +16,11 @@ class ProcessComment implements ShouldQueue
 
     private $comment;
 
+
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param Comment $comment
      */
     public function __construct(Comment $comment)
     {
@@ -31,7 +32,6 @@ class ProcessComment implements ShouldQueue
      *
      * @return void
      */
-
     public function handle()
     {
         $this->comment->save();

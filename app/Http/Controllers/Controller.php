@@ -10,8 +10,13 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    /**
+     * Get articles for main page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index() {
-        $articles = Article::all()->take(6);
+        $articles = Article::latest()->take(6);
         return view('main', ['articles' => $articles]);
     }
 }

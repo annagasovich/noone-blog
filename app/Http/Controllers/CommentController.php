@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
+    /**
+     * Save comment
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function save(Request $request)
     {
 

@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class StatsController extends Controller
 {
+    /**
+     * Add view
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
     public function view(Request $request) {
         $article = Article::find($request->id);
         if(!$article) {
@@ -17,6 +24,13 @@ class StatsController extends Controller
         return ['result' => true, 'views' => $article->views];
     }
 
+    /**
+     * Add like
+     *
+     * @param Request $request
+     *
+     * @return array
+     */
     public function like(Request $request) {
         $article = Article::find($request->id);
         if(!$article) {

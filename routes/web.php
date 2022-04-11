@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\StatsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Controller::class, 'index'])->name('main');
 
-Route::get('articles', [ArticlesController::class, 'index']);
+Route::get('articles', [ArticlesController::class, 'index'])->name('articles');
 
 Route::get('articles/{slug}', [ArticlesController::class, 'get']);

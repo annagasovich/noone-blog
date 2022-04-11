@@ -13,4 +13,12 @@ class Article extends Model
     public function tags() {
         return $this->belongsToMany(Tag::class);
     }
+
+    public function getContentPreviewAttribute() {
+        return substr($this->content, 0, 100);
+    }
+
+    public function getFullUrlAttribute() {
+        return '/articles/' . $this->url;
+    }
 }

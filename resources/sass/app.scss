@@ -6,3 +6,17 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+@import '~bootstrap-icons/font/bootstrap-icons';
+
+.icon, .tag {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.nav-item.active{
+    border-bottom: 2px solid dodgerblue;
+}
+
+.icons {
+    font-size: 18px;
+}
